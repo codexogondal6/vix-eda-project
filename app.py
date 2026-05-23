@@ -1,50 +1,65 @@
-
 import streamlit as st
-import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
 
-# Page Config
-st.set_page_config(page_title="VIX Dashboard", layout="wide")
+# Load data
+df = pd.read_csv('vix-daily.csv')
+df['DATE'] = pd.to_datetime(df['DATE'])
 
-# Title
+# Add moving averages
+df['MA_30'] = df['CLOSE'].rolling(window=30).mean()
+df['MA_252'] = df['CLOSE'].rolling(window=252).mean()
+
 st.title("📈 VIX Fear Index Dashboard")
-st.markdown("Interactive visualization of Volatility Index (1990-2026)")
 
-# Load Data
-@st.cache_data
-def load_data():
-    # Yeh try/except block error handle karega agar file na mile
-    try:
-        df = pd.read_csv('vix-daily-cleaned.csv')
-        df['DATE'] = pd.to_datetime(df['DATE'])
-        return df
-    except FileNotFoundError:
-        st.error("File not found! Please upload vix-daily-cleaned.csv to the folder.")
-        return None
+# Chart 1: Time Series (✓ Already showing)
+fig1 = px.line(df, x='DATE', y='CLOSE', title='VIX Trend Over Time')
+st.plotly_chart(fig1, use_container_width=True)
 
-df = load_data()
+# Chart 2: Moving Averages (Add this)
+st.subheader("Moving Averages")
+fig2 = go.Figure()
+fig2.add_trace(go.Scatter(x=df['DATE'], y=df['CLOSE'], name='VIX', line=dict(color='blue')))
+fig2.add_trace(go.Scatter(x=df['DATE'], y=df['MA_30'], name='30-day MA', line=dict(color='orange')))
+fig2.add_trace(go.Scatter(x=df['DATE'], y=df['MA_252'], name='252-day MA', line=dict(color='red')))
+st.plotly_chart(fig2, use_container_width=True)
 
-if df is not None:
-    # Sidebar Filter
-    start_date = st.sidebar.date_input("Start Date", df['DATE'].min())
-    end_date = st.sidebar.date_input("End Date", df['DATE'].max())
-    
-    # Filter Data
-    mask = (df['DATE'] >= pd.to_datetime(start_date)) & (df['DATE'] <= pd.to_datetime(end_date))
-    df_filtered = df.loc[mask]
+# Chart 3: Yearly Average (Add this)
+st.subheader("Yearly Average VIX")
+df['Year'] = df['DATE'].dt.year
+yearly_avg = df.groupby('Year')['CLOSE'].mean().reset_index()
+fig3 = px.bar(yearly_avg, x='Year', y='CLOSE', title='Average VIX by Year')
+st.plotly_chart(fig3, use_container_width=True)
 
-    # Metrics
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Current VIX", f"{df_filtered['CLOSE'].iloc[-1]:.2f}")
-    col2.metric("Average VIX", f"{df_filtered['CLOSE'].mean():.2f}")
-    col3.metric("Max VIX (All Time)", f"{df['CLOSE'].max():.2f}")
+# Chart 4: Monthly Heatmap (Add this)
+st.subheader("Monthly Seasonality Heatmap")
+df['Month'] = df['DATE'].dt.month
+df['Year'] = df['DATE'].dt.year
+monthly_pivot = df.pivot_table(values='CLOSE', index='Year', columns='Month', aggfunc='mean')
+fig4 = px.imshow(monthly_pivot, title='VIX Monthly Heatmap', color_continuous_scale='RdYlGn_r')
+st.plotly_chart(fig4, use_container_width=True)
 
-    # Chart 1: Line Chart
-    st.subheader("VIX Trend Over Time")
-    fig = px.line(df_filtered, x='DATE', y='CLOSE', height=400)
-    st.plotly_chart(fig, use_container_width=True)
+# Chart 5: Distribution with Zones (Enhance existing)
+st.subheader("VIX Distribution by Zones")
+def categorize_vix(value):
+    if value < 15: return 'Low (<15)'
+    elif value < 25: return 'Normal (15-25)'
+    elif value < 35: return 'High (25-35)'
+    else: return 'Extreme (>35)'
 
-    # Chart 2: Distribution
-    st.subheader("VIX Distribution")
-    fig2 = px.histogram(df_filtered, x='CLOSE', nbins=50, height=300)
-    st.plotly_chart(fig2, use_container_width=True)
+df['Zone'] = df['CLOSE'].apply(categorize_vix)
+fig5 = px.histogram(df, x='CLOSE', color='Zone', nbins=50, 
+                    title='VIX Distribution by Fear Zones',
+                    color_discrete_map={'Low (<15)': 'green', 'Normal (15-25)': 'blue', 
+                                       'High (25-35)': 'orange', 'Extreme (>35)': 'red'})
+st.plotly_chart(fig5, use_container_width=True)
+
+# Chart 6: Top 20 Highest VIX Days (Add this)
+st.subheader("Top 20 Highest VIX Days")
+top_20 = df.nlargest(20, 'CLOSE')
+fig6 = px.bar(top_20, x='DATE', y='CLOSE', 
+              title='Top 20 Highest VIX Close Values',
+              hover_data=['DATE', 'CLOSE'])
+st.plotly_chart(fig6, use_container_width=True)
