@@ -15,11 +15,11 @@ st.markdown("Interactive visualization of Volatility Index (1990-2026)")
 def load_data():
     # Yeh try/except block error handle karega agar file na mile
     try:
-        df = pd.read_csv('vix-daily.csv')
+        df = pd.read_csv('vix-daily-cleaned.csv')
         df['DATE'] = pd.to_datetime(df['DATE'])
         return df
     except FileNotFoundError:
-        st.error("File not found! Please upload vix-daily.csv to the folder.")
+        st.error("File not found! Please upload vix-daily-cleaned.csv to the folder.")
         return None
 
 df = load_data()
