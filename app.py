@@ -25,6 +25,9 @@ st.markdown("""
     .metric-lbl  { font-size: 0.75rem; color: #777; text-transform: uppercase; letter-spacing: 0.08em; }
     .metric-val  { font-size: 2rem; font-weight: 700; margin-top: 4px; }
     hr.divider   { border: none; border-top: 1px solid #2a2a3d; margin: 1.2rem 0; }
+    /* Hide sidebar collapse arrow button */
+    button[kind="headerNoPadding"], [data-testid="collapsedControl"] { display: none !important; }
+    section[data-testid="stSidebarCollapsedControl"] { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -193,7 +196,7 @@ fig5.update_yaxes(title_text="Number of Days", **GRID)
 st.plotly_chart(fig5, use_container_width=True)
 
 # ══ CHART 6 — Top 20 Highest VIX Days (horizontal) ══════════════════════════
-st.markdown('<div class="chart-title">📊 Chart 6 — Top 20 Highest VIX Days (All Time)</div>', unsafe_allow_html=True)
+st.markdown('<div class="chart-title">🔥 Chart 6 — Top 20 Highest VIX Days (All Time)</div>', unsafe_allow_html=True)
 st.markdown('<div class="chart-desc">Scariest days in market history — almost all from 2008 Crash & COVID-19</div>', unsafe_allow_html=True)
 
 top20 = df.nlargest(20, "CLOSE").sort_values("CLOSE", ascending=True).copy()
