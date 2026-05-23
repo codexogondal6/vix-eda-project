@@ -193,7 +193,7 @@ fig5.update_yaxes(title_text="Number of Days", **GRID)
 st.plotly_chart(fig5, use_container_width=True)
 
 # ══ CHART 6 — Top 20 Highest VIX Days (horizontal) ══════════════════════════
-st.markdown('<div class="chart-title">🔥 Chart 6 — Top 20 Highest VIX Days (All Time)</div>', unsafe_allow_html=True)
+st.markdown('<div class="chart-title">📊 Chart 6 — Top 20 Highest VIX Days (All Time)</div>', unsafe_allow_html=True)
 st.markdown('<div class="chart-desc">Scariest days in market history — almost all from 2008 Crash & COVID-19</div>', unsafe_allow_html=True)
 
 top20 = df.nlargest(20, "CLOSE").sort_values("CLOSE", ascending=True).copy()
