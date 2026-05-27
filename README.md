@@ -213,9 +213,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: @codexogondal6(https://github.com/yourusername)
+- GitHub: https://github.com/codexogondal6
 - Email:  70177628@student.uol.edu.pk
-- LinkedIn: MALIK ATIF IQBAL(https://linkedin.com/in/yourprofile)
+- LinkedIn:https://linkedin.com/in/gondalfounder
 
 ## 🙏 Acknowledgments
 
