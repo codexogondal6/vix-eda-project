@@ -213,9 +213,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
+- GitHub: @codexogondal6(https://github.com/yourusername)
+- Email:  70177628@student.uol.edu.pk
+- LinkedIn: MALIK ATIF IQBAL(https://linkedin.com/in/yourprofile)
 
 ## 🙏 Acknowledgments
 
@@ -224,11 +224,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Streamlit** team for the amazing web framework
 - **Plotly** for interactive visualization library
 
-## 📞 Support
-
-For questions, suggestions, or issues:
-- Open an issue on GitHub
-- Email: your.email@example.com
 
 ## 🔗 References
 
