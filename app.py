@@ -48,7 +48,7 @@ st.markdown("""
 # ── Load Data ─────────────────────────────────────────────────────────────────
 @st.cache_data
 def get_data():
-    return load_and_prepare("vix-daily-cleaned.csv")
+    return load_and_prepare("vix-daily.csv")
 
 df = get_data()
 
@@ -163,7 +163,7 @@ st.plotly_chart(chart_heatmap(dff), use_container_width=True)
 
 st.markdown('<div class="chart-title">🔥 Chart 11 — Top 20 Highest VIX Days (All Time)</div>', unsafe_allow_html=True)
 st.markdown('<div class="chart-desc">The most fearful trading days in history. Almost all from 2008 Crash & COVID-19.</div>', unsafe_allow_html=True)
-st.plotly_chart(chart_top20_bar(df), use_container_width=True)
+st.plotly_chart(chart_top20_bar(dff), use_container_width=True)
 
 # ── Footer ────────────────────────────────────────────────────────────────────
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
