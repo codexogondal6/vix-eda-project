@@ -158,9 +158,17 @@ def chart_pie_zones(dff):
                  hole=0.38)
     fig.update_traces(textposition="outside", textinfo="percent+label",
                       textfont=dict(size=12))
-    fig.update_layout(**_base(400),
-                      showlegend=True,
-                      legend=dict(orientation="v", x=1.02, y=0.5))
+    fig.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="#0f0f1a",
+        font=dict(family=FONT, color="#cccccc", size=12),
+        margin=dict(l=55, r=30, t=40, b=50),
+        height=400,
+        showlegend=True,
+        legend=dict(orientation="v", x=1.02, y=0.5,
+                    bgcolor="rgba(20,20,20,0.85)",
+                    bordercolor="#333", borderwidth=1)
+    )
     return fig
 
 
