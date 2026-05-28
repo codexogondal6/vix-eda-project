@@ -161,12 +161,11 @@ st.markdown('<div class="chart-title">🗓️ Chart 10 — Monthly Seasonality H
 st.markdown('<div class="chart-desc">Average VIX per Year × Month. Red = high fear. Spot which months are historically volatile.</div>', unsafe_allow_html=True)
 st.plotly_chart(chart_heatmap(dff), use_container_width=True)
 
-st.markdown('<div class="chart-title">🔥 Chart 11 — Top 20 Highest VIX Days (All Time)</div>', unsafe_allow_html=True)
+st.markdown('<div class="chart-title">📊 Chart 11 — Top 20 Highest VIX Days (All Time)</div>', unsafe_allow_html=True)
 st.markdown('<div class="chart-desc">The most fearful trading days in history. Almost all from 2008 Crash & COVID-19.</div>', unsafe_allow_html=True)
 st.plotly_chart(chart_top20_bar(dff), use_container_width=True)
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
-st.markdown('<span class="section-tag">⭐ BONUS CHART</span>', unsafe_allow_html=True)
-st.markdown('<div class="chart-title">🫧 Bonus — Bubble Chart: Year vs Avg VIX</div>', unsafe_allow_html=True)
+st.markdown('<div class="chart-title">🫧 Chart 12 — Bubble Chart: Year vs Avg VIX</div>', unsafe_allow_html=True)
 st.markdown('<div class="chart-desc">Bubble size = Max VIX that year. Bigger bubble = more extreme spikes.</div>', unsafe_allow_html=True)
 st.plotly_chart(chart_bubble(dff), use_container_width=True)
 
