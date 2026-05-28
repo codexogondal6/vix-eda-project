@@ -103,6 +103,7 @@ streamlit run app.py
 5. **Open your browser:**
 Navigate to `http://localhost:8501`
 
+📁 Project Structure
 vix_project/
 ├── data/
 │   └── vix-daily.csv          # Original dataset (DO NOT RENAME)
