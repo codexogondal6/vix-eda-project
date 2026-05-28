@@ -103,27 +103,16 @@ streamlit run app.py
 5. **Open your browser:**
 Navigate to `http://localhost:8501`
 
-## 📂 Project Structure
-
-```
-vix-eda-project/
-│
+vix_project/
 ├── data/
-│   └── vix-daily.csv              # Raw dataset
-│
+│   └── vix-daily.csv          # Original dataset (DO NOT RENAME)
 ├── notebooks/
-│   └── vix_analysis.ipynb         # Jupyter notebook for analysis
-│
-├── src/
-│   ├── data_cleaning.py           # Data preprocessing functions
-│   ├── visualization.py           # Chart generation functions
-│   └── analysis.py                # Statistical analysis functions
-│
-├── app.py                         # Streamlit web application
-├── requirements.txt               # Python dependencies
-├── README.md                      # Project documentation
-├── LICENSE                        # MIT License
-└── .gitignore                     # Git ignore file
+│   └── analysis.ipynb         # EDA Jupyter Notebook
+├── app.py                     # Main dashboard application
+├── charts.py                  # All chart/visualization functions
+├── filters.py                 # All filter and data processing functions
+├── requirements.txt           # Python dependencies
+└── README.md                  # This file
 ```
 
 ## 🚀 Deployment
