@@ -265,3 +265,20 @@ def chart_violin_seaborn(dff):
     ax.legend(fontsize=9)
     plt.tight_layout()
     return fig
+def chart_bubble(dff):
+    """Bonus — Bubble Chart: Year vs Avg VIX, bubble size = Max VIX"""
+    yearly = dff.groupby("Year").agg(
+        Avg_VIX=("CLOSE","mean"),
+        Max_VIX=("CLOSE","max"),
+        Count=("CLOSE","count")
+    ).reset_index()
+    fig = px.scatter(yearly, x="Year", y="Avg_VIX",
+                     size="Max_VIX", color="Avg_VIX",
+                     color_continuous_scale="RdYlGn_r",
+                     hover_data=["Max_VIX","Count"],
+                     labels={"Avg_VIX":"Average VIX","Max_VIX":"Max VIX"},
+                     size_max=55)
+    fig.update_layout(**_base(420), coloraxis_showscale=False)
+    fig.update_xaxes(title_text="Year", **GRID)
+    fig.update_yaxes(title_text="Average VIX", **GRID)
+    return fig
