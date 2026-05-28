@@ -48,7 +48,7 @@ st.markdown("""
 # ── Load Data ─────────────────────────────────────────────────────────────────
 @st.cache_data
 def get_data():
-    return load_and_prepare("data/vix-daily.csv")
+    return load_and_prepare("vix-daily-cleaned.csv")
 
 df = get_data()
 
